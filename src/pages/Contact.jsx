@@ -5,6 +5,19 @@ export default function ContactUs() {
     firstName: "", lastName: "", phone: "", email: "", message: "", preference: "", agreed: false,
   });
 
+  const [openPreference, setOpenPreference] = useState(false);
+
+const preferenceOptions = [
+  { value: "", label: "Select Communication Preference" },
+  { value: "email", label: "Email" },
+  { value: "phone", label: "Phone" },
+  { value: "either", label: "Either" },
+];
+
+const selectedPreference =
+  preferenceOptions.find((item) => item.value === form.preference)?.label ||
+  "Select Communication Preference";
+
   const handle = (e) => {
     const { name, value, type, checked } = e.target;
     setForm((prev) => ({ ...prev, [name]: type === "checkbox" ? checked : value }));
@@ -18,32 +31,23 @@ export default function ContactUs() {
   return (
     <main className="bg-white font-sans text-gray-900 min-h-screen">
 
-      {/* ━━ HERO ━━ */}
-      <section
-        className="relative px-6 md:px-16 lg:px-28 pt-14 pb-20"
-        style={{ backgroundColor: "#6b6b6b" }}
-      >
-        <h1
-          className="text-5xl md:text-6xl mt-6 mb-6"
-          style={{ fontFamily: "Georgia, serif" }}
-        >
-          <span className="font-bold text-white">Contact</span>{" "}
-          <span className="font-light text-white">Us</span>
-        </h1>
-        <p className="absolute bottom-6 right-8 text-gray-300 text-xs tracking-widest">
-          Pharmacy background
-        </p>
+      {/* ━━ PAGE TITLE ━━ */}
+      <section className="bg-[#3a3a3a] h-[200px] md:h-[470px] overflow-hidden relative">
+        <p className="h-[200px] md:h-full"><img src="/images/about-main-banner.jpg" alt="About Us" className="w-full h-full object-cover opacity-20" /></p>
+        <div className ="h-[60px] md:h-[470px] flex items-center flex-row w-full px-6 md:px-12 absolute top-[120px] md:top-0 md:bg-black/70">
+        <h1 className="text-4xl md:text-[65px] text-white font-light" >
+          <span className="font-bold">Contact</span> Us
+        </h1></div>
       </section>
 
       {/* ━━ CONTENT ━━ */}
       <section className="px-6 md:px-16 lg:px-28 py-16 md:py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20">
+        <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-14 lg:gap-20">
 
           {/* ── LEFT: Form ── */}
           <div>
             <h2
-              className="text-2xl md:text-3xl mb-8"
-              style={{ fontFamily: "Georgia, serif" }}
+              className="text-2xl md:text-[28px] mb-8"
             >
               <span className="font-bold">Get In Touch</span>{" "}
               <span className="font-light">With Us</span>
@@ -101,21 +105,37 @@ export default function ContactUs() {
                 />
               </div>
 
-              {/* Communication Preference dropdown */}
-              <div className="flex flex-col mb-8">
-                <div className="flex items-center justify-between border-b border-gray-800 pb-1">
-                  <select
-                    name="preference" value={form.preference} onChange={handle}
-                    className="flex-1 text-sm text-gray-600 bg-transparent border-0 focus:outline-none appearance-none cursor-pointer"
+              
+             {/* Communication Preference dropdown */}
+
+
+          <div className="flex flex-col mb-8 relative">
+            <button
+              type="button"
+              onClick={() => setOpenPreference(!openPreference)}
+              className="w-full border-b border-gray-800 pb-2 text-sm text-gray-600 bg-transparent flex items-center justify-between text-left focus:outline-none"
+            >
+              <span>{selectedPreference}</span>
+              <span className="text-gray-600 text-xs">▼</span>
+            </button>
+
+            {openPreference && (
+              <ul className="absolute top-full left-0 w-full bg-white border border-gray-300 shadow-md z-50">
+                {preferenceOptions.map((option) => (
+                  <li
+                    key={option.value}
+                    onClick={() => {
+                      setForm((prev) => ({ ...prev, preference: option.value }));
+                      setOpenPreference(false);
+                    }}
+                    className="text-sm text-gray-700 px-4 py-2 cursor-pointer hover:bg-blue-600 hover:text-white"
                   >
-                    <option value="">Select Communication Preference</option>
-                    <option value="email">Email</option>
-                    <option value="phone">Phone</option>
-                    <option value="either">Either</option>
-                  </select>
-                  <span className="text-gray-600 text-xs pointer-events-none">▼</span>
-                </div>
-              </div>
+                    {option.label}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
 
               {/* Checkbox */}
               <div className="flex items-start gap-3 mb-8">
@@ -153,7 +173,7 @@ export default function ContactUs() {
               {/* Submit button */}
               <button
                 type="submit"
-                className="bg-green-600 hover:bg-green-700 text-white font-bold text-sm tracking-widest uppercase px-8 py-4 transition-colors duration-200 self-start"
+                className="bg-[#278228] hover:bg-black text-white font-bold text-sm tracking-widest uppercase px-8 py-4 transition-colors duration-200 self-start"
                 style={{ borderRadius: "4px" }}
               >
                 SEND MESSAGE
@@ -167,7 +187,7 @@ export default function ContactUs() {
             {/* Address */}
             <div>
               <h3
-                className="text-2xl font-bold mb-3"
+                className="text-2xl md:text-[28px] font-bold mb-3"
                 style={{ fontFamily: "Georgia, serif" }}
               >
                 Anna Pharmacy
@@ -183,8 +203,7 @@ export default function ContactUs() {
             {/* Contact */}
             <div>
               <h3
-                className="text-xl font-bold mb-2"
-                style={{ fontFamily: "Georgia, serif" }}
+                className="text-xl md:text-[28px]  font-bold mb-2"
               >
                 Contact
               </h3>

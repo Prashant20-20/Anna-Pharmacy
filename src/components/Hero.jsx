@@ -98,11 +98,11 @@ const Hero = () => {
 <div className="relative z-10 h-full flex items-center justify-center px-4 animate-fade-in-up">
   <div className="text-center max-w-3xl">
 
-    <h2 className="text-white text-center text-[60px] font-extralight leading-[66px]">
+    <h2 className="text-white text-center text-5xl md:text-[60px] font-extralight md:leading-[66px]">
       Welcome to
     </h2>
 
-    <h1 className="text-white text-center text-[80px] font-extralight leading-[80px] mb-8">
+    <h1 className="text-white text-center text-5xl md:text-[80px] font-extralight leading-[54px] md:leading-[80px] mb-8">
       Anna Pharmacy Group
     </h1>
 

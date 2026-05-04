@@ -21,7 +21,7 @@ const BranchCard = ({ branch }) => {
       onMouseLeave={() => setHovered(false)}
       style={{
         borderRadius: "16px",
-        overflow: "hidden",         /* clips the sliding green panel */
+        overflow: "hidden",         
         position: "relative",
         cursor: "pointer",
         transition: "transform 0.5s ease, box-shadow 0.5s ease",
@@ -39,12 +39,12 @@ const BranchCard = ({ branch }) => {
             position: "absolute", top: 14, left: 0, right: 0,
             textAlign: "center", color: "#bbb", fontSize: 12,
             letterSpacing: "0.05em", zIndex: 1,
-          }}>Pharmacy Image</span>
+          }}></span>
           <img
             src={branch.image}
             alt={branch.name}
             style={{
-              position: "absolute", inset: 0,
+              position: "absolute", inset: 0, top: 15,
               width: "100%", height: "100%",
               objectFit: "cover", zIndex: 2,
             }}
@@ -53,15 +53,12 @@ const BranchCard = ({ branch }) => {
         </div>
 
         {/* White text below image */}
-        <div style={{ padding: "14px 10px 20px 10px", backgroundColor: "#fff" }}>
-          <h3 style={{
-            fontFamily: "Georgia, serif", fontWeight: 700,
-            fontSize: 17, color: "#111", lineHeight: 1.3, marginBottom: 5,
-          }}>
+        <div className="p-8 bg-white">
+          <h3 className="text-xl md:text-[28px] md:leading-8 text-black mb-4">
             {branch.name}
           </h3>
           {branch.address.map((l, i) => (
-            <p key={i} style={{ color: "#888", fontSize: 13, lineHeight: 1.5 }}>{l}</p>
+            <p className="text-[15px] text-black font-normal" key={i}>{l}</p>
           ))}
         </div>
       </div>
@@ -82,9 +79,9 @@ const BranchCard = ({ branch }) => {
           transition: "transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)",
         }}
       >
-        <p style={{ color: "#fff", fontWeight: 700, fontSize: 16, lineHeight: 1.3, marginBottom: 10 }}>
+        <h3 className="text-xl md:text-[28px] md:leading-8 text-white mb-4">
           {branch.name}
-        </p>
+        </h3>
         {branch.address.map((l, i) => (
           <p key={i} style={{ color: "#c8e6c9", fontSize: 13, lineHeight: 1.6 }}>{l}</p>
         ))}
@@ -126,36 +123,21 @@ export default function Branches() {
     <main style={{ backgroundColor: "#fff", fontFamily: "sans-serif", minHeight: "100vh" }}>
 
       {/* Hero */}
-      <section style={{ backgroundColor: "#6b6b6b", padding: "48px 80px 64px", position: "relative" }}>
-        <div style={{
-          position: "absolute", left: "33%", top: 32, bottom: 32,
-          width: 1, backgroundColor: "rgba(255,255,255,0.15)",
-        }} />
-        <h1 style={{
-          fontFamily: "Georgia, serif", fontWeight: 700,
-          fontSize: "clamp(3rem,7vw,5rem)", color: "#fff", marginTop: 24,
-        }}>Branches</h1>
-        <p style={{
-          position: "absolute", bottom: 24, right: 32,
-          color: "#ccc", fontSize: 11, letterSpacing: "0.15em",
-        }}>Pharmacy background</p>
+       <section className="bg-[#3a3a3a] h-[200px] md:h-[470px] overflow-hidden relative">
+        <p className="h-[200px] md:h-full"><img src="/images/about-main-banner.jpg" alt="About Us" className="w-full h-full object-cover opacity-20" /></p>
+        <div className ="h-[60px] md:h-[470px] flex items-center flex-row w-full px-6 md:px-12 absolute top-[120px] md:top-0 md:bg-black/70">
+        <h1 className="text-4xl md:text-[65px] text-white font-light" >
+          Branches
+        </h1></div>
       </section>
 
       {/* Cards */}
-      <section style={{ padding: "64px 80px 96px" }}>
-        <h2 style={{
-          fontFamily: "Georgia, serif",
-          fontSize: "clamp(1.8rem,4vw,2.5rem)",
-          textAlign: "center", marginBottom: 48, color: "#111",
-        }}>
-          A <strong>Growing</strong> Network
-        </h2>
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-          gap: 32,
-        }}>
+      <section className="py-[65px]">
+        <div class="mx-6 md:w-[1260px] md:mx-auto"> 
+        <h2 className="text-3xl md:text-5xl font-light text-black mb-14 leading-snug text-center"> A <span className="font-bold">Growing</span> Network</h2>
+        <div  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {branches.map((b) => <BranchCard key={b.id} branch={b} />)}
+        </div>
         </div>
       </section>
 
