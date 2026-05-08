@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const branches = [
   { id: 1, name: "Anna Pharmacy Hackbridge", address: ["186 London Road", "Hackbridge", "SM6 7FW"], email: "info@annapharmacy.com", phone: "020 8640 0404", hours: ["Monday to Friday: 9am–6:30pm", "Saturday: 9am–1pm", "Sunday Closed"], website: "#", image: "/images/branch-hackbridge.jpg" },
@@ -12,34 +12,46 @@ const branches = [
   { id: 9, name: "Round The Clock Pharmacy", address: ["69 Church Road", "Barnes", "SW13 9HH"], email: "info@roundtheclock.com", phone: "020 8640 0404", hours: ["Monday to Friday: 9am–6:30pm", "Saturday: 9am–1pm", "Sunday Closed"], website: "#", image: "/images/branch-roundtheclock.jpg" },
 ];
 
-const BranchCard = ({ branch }) => {
+const BranchCard = ({ branch, index }) => {
   const [hovered, setHovered] = useState(false);
+  const cardRef = useRef(null);
+
+  useEffect(() => {
+    const el = cardRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => el.classList.add("card-in-view"), index * 90);
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.12 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [index]);
 
   return (
     <div
+      ref={cardRef}
+      className="card-animate"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
         borderRadius: "16px",
-        overflow: "hidden",         
+        overflow: "hidden",
         position: "relative",
         cursor: "pointer",
-        transition: "transform 0.5s ease, box-shadow 0.5s ease",
-        transform: hovered ? "translateY(-8px)" : "translateY(0px)",
         boxShadow: hovered
           ? "0 20px 40px rgba(0,0,0,0.15)"
           : "0 2px 10px rgba(0,0,0,0.08)",
+        transition: "box-shadow 0.4s ease",
       }}
     >
-      {/* ── STATIC LAYER: image + white text (always rendered) ── */}
+      {/* Static layer */}
       <div>
-        {/* Gray image box */}
         <div style={{ height: "200px", backgroundColor: "#707070", position: "relative" }}>
-          <span style={{
-            position: "absolute", top: 14, left: 0, right: 0,
-            textAlign: "center", color: "#bbb", fontSize: 12,
-            letterSpacing: "0.05em", zIndex: 1,
-          }}></span>
           <img
             src={branch.image}
             alt={branch.name}
@@ -51,10 +63,8 @@ const BranchCard = ({ branch }) => {
             onError={(e) => { e.target.style.display = "none"; }}
           />
         </div>
-
-        {/* White text below image */}
         <div className="p-8 bg-white">
-          <h3 className="text-xl md:text-[28px] md:leading-8 text-black mb-4">
+          <h3 className="text-xl md:text-[28px] font-bold md:leading-8 text-black mb-4">
             {branch.name}
           </h3>
           {branch.address.map((l, i) => (
@@ -63,56 +73,121 @@ const BranchCard = ({ branch }) => {
         </div>
       </div>
 
-      {/* ── SLIDE LAYER: green panel slides from bottom to top over entire card ── */}
+      {/* ── Green overlay: bottom → top via translateY ── */}
       <div
         style={{
           position: "absolute",
-          top: 0, left: 0, right: 0, bottom: 0,   /* covers full card */
+          top: 0, left: 0, right: 0, bottom: 0,
           backgroundColor: "#2e7d32",
-          padding: "22px 22px 20px 22px",
+          padding: "22px 30px 20px 30px",
           display: "flex",
           flexDirection: "column",
           justifyContent: "flex-start",
           overflowY: "auto",
-          /* slide: starts at 100% (below card) → 0% (fully visible) */
           transform: hovered ? "translateY(0%)" : "translateY(100%)",
-          transition: "transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)",
+          transition: "transform 0.55s cubic-bezier(0.4, 0, 0.2, 1)",
         }}
       >
-        <h3 className="text-xl md:text-[28px] md:leading-8 text-white mb-4">
+        <h3 className="text-xl md:text-[28px] font-bold md:leading-8 text-white mb-4">
           {branch.name}
         </h3>
         {branch.address.map((l, i) => (
-          <p key={i} style={{ color: "#c8e6c9", fontSize: 13, lineHeight: 1.6 }}>{l}</p>
+          <p key={i} style={{ color: "#c8e6c9", fontSize: 15, lineHeight: 1.5 }}>{l}</p>
         ))}
         <div style={{ marginTop: 10 }}>
-          <p style={{ color: "#c8e6c9", fontSize: 13 }}>
+          <p style={{ color: "#c8e6c9", fontSize: 15 }}>
             <strong style={{ color: "#fff" }}>E. </strong>{branch.email}
           </p>
-          <p style={{ color: "#c8e6c9", fontSize: 13 }}>
+          <p style={{ color: "#c8e6c9", fontSize: 15 }}>
             <strong style={{ color: "#fff" }}>T. </strong>{branch.phone}
           </p>
         </div>
         <div style={{ marginTop: 10 }}>
-          <p style={{ color: "#fff", fontSize: 12, fontWeight: 700, marginBottom: 4 }}>Business Hours</p>
+          <p style={{ color: "#fff", fontSize: 15, fontWeight: 700, marginBottom: 4 }}>Business Hours</p>
           {branch.hours.map((l, i) => (
-            <p key={i} style={{ color: "#c8e6c9", fontSize: 12, lineHeight: 1.6 }}>{l}</p>
+            <p key={i} style={{ color: "#c8e6c9", fontSize: 15, lineHeight: 1.5 }}>{l}</p>
           ))}
         </div>
         <a
-          href={branch.website}
-          onClick={(e) => e.stopPropagation()}
-          style={{
-            display: "inline-block", marginTop: 14,
-            backgroundColor: "#111", color: "#fff",
-            fontSize: 11, fontWeight: 700,
-            letterSpacing: "0.12em", textTransform: "uppercase",
-            padding: "10px 18px", borderRadius: 4,
-            textDecoration: "none", alignSelf: "flex-start",
-          }}
-        >
-          VISIT WEBSITE
-        </a>
+  href={branch.website}
+  onClick={(e) => e.stopPropagation()}
+  className="btn-visit"
+  style={{
+    position: "relative",
+    display: "inline-block",
+    marginTop: 14,
+    backgroundColor: "#000",
+    color: "#fff",
+    fontSize: 15,
+    fontWeight: 400,
+    letterSpacing: "0.04em",
+    textTransform: "uppercase",
+    padding: "10px 18px",
+    borderRadius: 4,
+    textDecoration: "none",
+    alignSelf: "flex-start",
+  }}
+>
+  <style>{`
+    .btn-visit { transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1); }
+    .btn-visit:hover { transform: translateY(-3px); }
+    .btn-visit:active { transform: translateY(0) scale(0.97); }
+
+    .btn-visit::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 2px;
+      background: white;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s cubic-bezier(0.22,1,0.36,1) 0s;
+      border-radius: 4px 4px 0 0;
+    }
+    .btn-visit::after {
+      content: "";
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 100%; height: 2px;
+      background: white;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.35s cubic-bezier(0.22,1,0.36,1) 0s;
+      border-radius: 0 0 4px 4px;
+    }
+    .btn-visit:hover::before,
+    .btn-visit:hover::after { transform: scaleX(1); }
+
+    .btn-visit .b-left {
+      position: absolute;
+      left: 0; top: 0;
+      width: 2px; height: 100%;
+      background: white;
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.3s cubic-bezier(0.22,1,0.36,1) 0.18s;
+      border-radius: 4px 0 0 4px;
+    }
+    .btn-visit .b-right {
+      position: absolute;
+      right: 0; bottom: 0;
+      width: 2px; height: 100%;
+      background: white;
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 0.3s cubic-bezier(0.22,1,0.36,1) 0.18s;
+      border-radius: 0 4px 4px 0;
+    }
+    .btn-visit:hover .b-left,
+    .btn-visit:hover .b-right { transform: scaleY(1); }
+
+    .btn-visit .btn-text { position: relative; z-index: 1; }
+  `}</style>
+
+  <span className="b-left" />
+  <span className="b-right" />
+  <span className="btn-text">VISIT WEBSITE</span>
+</a>
       </div>
     </div>
   );
@@ -120,29 +195,63 @@ const BranchCard = ({ branch }) => {
 
 export default function Branches() {
   return (
-    <main style={{ backgroundColor: "#fff", fontFamily: "sans-serif", minHeight: "100vh" }}>
+    <>
+      {/* Global animation styles */}
+      <style>{`
+        @keyframes fadeInUp {
+          from { opacity: 0; transform: translateY(40px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes heroFadeIn {
+          from { opacity: 0; transform: translateX(-30px); }
+          to   { opacity: 1; transform: translateX(0); }
+        }
+        .hero-title {
+          opacity: 0;
+          animation: heroFadeIn 0.7s ease forwards 0.15s;
+        }
+        .section-heading {
+          opacity: 0;
+          animation: fadeInUp 0.6s ease forwards 0.3s;
+        }
+        .card-animate {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        .card-in-view {
+          animation: fadeInUp 0.55s ease forwards;
+        }
+      `}</style>
 
-      {/* Hero */}
-       <section className="bg-[#3a3a3a] h-[200px] md:h-[470px] overflow-hidden relative">
-        <p className="h-[200px] md:h-full"><img src="/images/about-main-banner.jpg" alt="About Us" className="w-full h-full object-cover opacity-20" /></p>
-        <div className ="h-[60px] md:h-[470px] flex items-center flex-row w-full px-6 md:px-12 absolute top-[120px] md:top-0 md:bg-black/70">
-        <h1 className="text-4xl md:text-[65px] text-white font-light" >
-          Branches
-        </h1></div>
-      </section>
+      <main style={{ backgroundColor: "#fff", fontFamily: "sans-serif", minHeight: "100vh" }}>
 
-      {/* Cards */}
-      <section className="py-[65px]">
-        <div class="mx-6 md:w-[1260px] md:mx-auto"> 
-        <h2 className="text-3xl md:text-5xl font-light text-black mb-14 leading-snug text-center"> A <span className="font-bold">Growing</span> Network</h2>
-        <div  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {branches.map((b) => <BranchCard key={b.id} branch={b} />)}
-        </div>
-        </div>
-      </section>
+        {/* Hero */}
+        <section className="bg-[#3a3a3a] h-[200px] md:h-[470px] overflow-hidden relative">
+          <p className="h-[200px] md:h-full">
+            <img src="/images/about-main-banner.jpg" alt="About Us" className="w-full h-full object-cover opacity-20" />
+          </p>
+          <div className="h-[60px] md:h-[470px] flex items-center flex-row w-full px-6 md:px-12 absolute top-[120px] md:top-0 md:bg-black/70">
+            <h1 className="text-4xl md:text-[65px] text-white font-light hero-title">
+              Branches
+            </h1>
+          </div>
+        </section>
 
-       
+        {/* Cards */}
+        <section className="py-[65px]">
+          <div className="sm:mx-6 md:w-[1260px] md:mx-auto">
+            <h2 className="text-3xl md:text-5xl font-light text-black mb-14 leading-snug text-center section-heading">
+              A <span className="font-bold">Growing</span> Network
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {branches.map((b, i) => (
+                <BranchCard key={b.id} branch={b} index={i} />
+              ))}
+            </div>
+          </div>
+        </section>
 
-    </main>
+      </main>
+    </>
   );
 }
