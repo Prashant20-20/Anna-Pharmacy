@@ -37,10 +37,9 @@ function Counter({ to, duration = 1200 }) {
 }
 
 /* ── EmailJS Config ── */
-const EMAILJS_SERVICE_ID       = "service_prashant";
-const EMAILJS_TEMPLATE_ID      = "template_jdili6h";   // Admin email
-const EMAILJS_AUTOREPLY_ID     = "template_97oqimy";   // User auto-reply
-const EMAILJS_PUBLIC_KEY       = "-056hCRVDKEJfG4lk";
+const EMAILJS_SERVICE_ID  = "service_prashant";
+const EMAILJS_TEMPLATE_ID = "template_jdili6h";
+const EMAILJS_PUBLIC_KEY  = "-056hCRVDKEJfG4lk";
 
 export default function ContactUs() {
   const navigate = useNavigate();
@@ -78,28 +77,17 @@ export default function ContactUs() {
     setError("");
 
     try {
-      const formData = {
-        firstName:  form.firstName,
-        lastName:   form.lastName,
-        phone:      form.phone,
-        email:      form.email,
-        message:    form.message,
-        preference: form.preference || "Not specified",
-      };
-
-      // Admin ko email
       await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
-        formData,
-        EMAILJS_PUBLIC_KEY
-      );
-
-      // User ko auto-reply
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_AUTOREPLY_ID,
-        formData,
+        {
+          firstName:  form.firstName,
+          lastName:   form.lastName,
+          phone:      form.phone,
+          email:      form.email,
+          message:    form.message,
+          preference: form.preference || "Not specified",
+        },
         EMAILJS_PUBLIC_KEY
       );
 

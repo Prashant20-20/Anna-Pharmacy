@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const STYLES = `
   @keyframes navFadeDown {
@@ -59,8 +60,8 @@ const STYLES = `
     align-items: center;
     padding: 12px 14px;
     border-radius: 8px;
-    font-size: 12px;
-    font-weight: 700;
+    font-size: 13px;
+    font-weight: 500;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: #fff;
@@ -112,7 +113,7 @@ const Navbar = () => {
 
         {/* Logo */}
         <div className="flex items-center p-2 nav-logo-animated">
-          <img src="/logo.webp" alt="Logo" className="w-[120px] md:w-[170px]" />
+          <Link to="/"><img src="/logo.svg" alt="Logo" className="w-[140px] md:w-[170px] !outline-none" /></Link>
         </div>
 
         {/* Desktop Menu */}
@@ -123,7 +124,7 @@ const Navbar = () => {
                 to={to}
                 end={to === "/"}
                 className={({ isActive }) =>
-                  `nav-desktop-link px-3 py-1.5 rounded-[5px] uppercase block ${
+                  `nav-desktop-link px-3 py-1.5 rounded-[5px] uppercase block !outline-none ${
                     isActive ? "active-link bg-[#278228] text-white" : "hover:text-green-400"
                   }`
                 }
@@ -177,7 +178,7 @@ const Navbar = () => {
       >
         {/* Logo inside drawer */}
         <div className="px-6 pt-6 pb-4 border-b border-white/10">
-          <img src="/logo.webp" alt="Logo" className="w-[120px]" />
+          <img src="/logo.svg" alt="Logo" className="w-[140px]" />
         </div>
 
         {/* 3D Flip Links — key changes every open so animation re-runs */}

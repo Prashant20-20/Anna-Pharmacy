@@ -76,20 +76,16 @@ function AnimatedLine() {
   const [ref, inView] = useInView({ threshold: 0.05 });
   return (
     <div
-      ref={ref}
-      style={{
-        position: "absolute",
-        top: "8px",
-        bottom: "8px",
-        left: "106px",
-        width: "2px",
-        borderLeft: "2px dashed #d1d5db",
-        transformOrigin: "top",
-        transform: inView ? "scaleY(1)" : "scaleY(0)",
-        transition: "transform 1.2s cubic-bezier(0.22,1,0.36,1) 0.3s",
-      }}
-      className="timeline-line"
-    />
+  ref={ref}
+  className="
+    absolute top-[8px] bottom-[8px] left-[106px] w-[2px]
+    border-l-2 border-dashed border-gray-300
+    origin-top
+    transition-transform duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] delay-[300ms]
+    timeline-line
+    ${inView ? 'scale-y-100' : 'scale-y-0'}
+  "
+/>
   );
 }
 
@@ -164,24 +160,11 @@ const TeamCardOverflow = ({ name, surname, role, image, bio1, bio2, quotes = [] 
             <img
               src={image}
               alt={`${name} ${surname}`}
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                objectPosition: "center top",
-                display: "block",
-              }}
+              className="w-full h-full object-cover object-[center_top] block"
             />
             {/* Name badge over image bottom */}
             <div
-              style={{
-                position: "absolute",
-                bottom: "1rem",
-                left: "1rem",
-                background: "white",
-                padding: "10px 16px",
-                borderRadius: "4px",
-              }}
+              className="absolute bottom-4 left-4 bg-white px-[16px] py-[10px] rounded"
             >
               <p style={{ fontSize: "20px", color: "black", margin: 0, lineHeight: 1.2 }}>
                 <strong>{name}</strong>{" "}
@@ -231,15 +214,11 @@ const TeamCardOverflow = ({ name, surname, role, image, bio1, bio2, quotes = [] 
       >
         {/* 1. PHOTO */}
         <div
+        className={`
+    absolute top-0 bottom-0 left-[2rem] w-[280px] z-10
+    rounded-lg overflow-hidden 
+  `}
           style={{
-            position: "absolute",
-            top: 0,
-            left: "2rem",
-            width: "280px",
-            bottom: 0,
-            zIndex: 10,
-            borderRadius: "8px",
-            overflow: "hidden",
             opacity: inView ? 1 : 0,
             transform: inView ? "translateX(0)" : "translateX(-40px)",
             transition: "opacity 0.9s ease 0.25s, transform 0.9s cubic-bezier(0.22,1,0.36,1) 0.25s",
@@ -248,14 +227,7 @@ const TeamCardOverflow = ({ name, surname, role, image, bio1, bio2, quotes = [] 
           <img
             src={image}
             alt={`${name} ${surname}`}
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              objectPosition: "top",
-              display: "block",
-              transition: "transform 0.6s ease",
-            }}
+            className="w-full h-full object-cover object-top block transition-transform duration-500 ease-in"
             onMouseEnter={e => (e.currentTarget.style.transform = "scale(1.04)")}
             onMouseLeave={e => (e.currentTarget.style.transform = "scale(1)")}
           />
@@ -263,29 +235,11 @@ const TeamCardOverflow = ({ name, surname, role, image, bio1, bio2, quotes = [] 
 
         {/* 2. GREEN CARD */}
         <div
-          style={{
-            position: "relative",
-            zIndex: 5,
-            borderRadius: "12px",
-            backgroundColor: "#D5F5E3",
-            overflow: "visible",
-          }}
+          className="relative z-[5] rounded-xl bg-[#D5F5E3] overflow-visible"
         >
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
-            <div style={{
-              padding: "2rem",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "flex-end",
-              minHeight: "430px",
-            }} />
-            <div style={{
-              padding: "3rem 2rem 3rem 0",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              gap: "1rem",
-            }}>
+            <div className="p-8 flex flex-col justify-end min-h-[430px]" />
+            <div className="py-12 pr-8 pl-0 flex flex-col justify-center gap-4">
               <p style={{ fontSize: "15px", color: "black", lineHeight: 1.7, margin: 0 }}>{bio1}</p>
               {bio2 && <p style={{ fontSize: "15px", color: "black", lineHeight: 1.7, margin: 0 }}>{bio2}</p>}
             </div>
@@ -294,25 +248,13 @@ const TeamCardOverflow = ({ name, surname, role, image, bio1, bio2, quotes = [] 
 
         {/* 3. WHITE NAME BOX */}
         <div
-          style={{
-            position: "absolute",
-            bottom: "2rem",
-            left: "2rem",
-            width: "215px",
-            height: "85px",
-            background: "white",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            padding: "0 20px",
-            zIndex: 20,
-          }}
+          className="absolute bottom-8 left-8 w-[215px] h-[85px] bg-white flex flex-col justify-center px-[20px] z-20"
         >
-          <p style={{ fontSize: "26px", color: "black", margin: 0, lineHeight: 1.2 }}>
+          <p className="text-[26px] text-black m-0 leading-[1.2]">
             <strong>{name}</strong>{" "}
             <span style={{ fontWeight: 300 }}>{surname}</span>
           </p>
-          <p style={{ fontSize: "13px", color: "#278228", fontWeight: 700, letterSpacing: "0.15em", margin: "4px 0 0" }}>
+          <p className="text-[13px] text-[#278228] font-bold tracking-[0.15em] mt-[4px] mb-0">
             {role}
           </p>
         </div>
@@ -414,7 +356,7 @@ function HeroTitle() {
   return (
     <div className="h-[60px] md:h-[470px] flex items-center flex-row w-full px-6 md:px-12 absolute top-[120px] md:top-0 md:bg-black/70">
       <h1
-        className="text-4xl md:text-[65px] text-white font-light"
+        className="text-4xl md:text-[65px] text-white font-extralight"
         style={{
           opacity: visible ? 1 : 0,
           transform: visible ? "translateY(0)" : "translateY(30px)",
@@ -449,7 +391,7 @@ export default function AboutUs() {
       <section className="bg-white px-6 md:px-16 lg:px-32 py-14 md:py-20">
         <div className="md:w-[780px] mx-auto">
           <FadeUp delay={0}>
-            <h2 className="text-3xl md:text-5xl text-black mb-14 leading-snug">
+            <h2 className="text-3xl md:text-5xl text-black mb-14 leading-snug font-light">
               Built On Family Values.<br />
               <span className="font-bold">Growing With Purpose.</span>
             </h2>
@@ -547,9 +489,9 @@ export default function AboutUs() {
           </div>
           <FadeUp delay={0.1}>
             <div className="bg-gray-900 text-white text-center py-7 px-6 rounded-lg">
-              <p className="text-xl tracking-wide md:leading-9">
+              <p className="text-xl md:leading-9">
                 We are not short-term operators. We build<br />
-                <span className="text-[#278228] font-medium uppercase tracking-widest">SUSTAINABLE </span>
+                <span className="text-[#278228] font-medium uppercase">SUSTAINABLE </span>
                 <span className="font-bold">HEALTHCARE INFRASTRUCTURE.</span>
               </p>
             </div>
@@ -587,15 +529,15 @@ export default function AboutUs() {
               </FadeUp>
             ))}
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:flex gap-4">
             <FadeUp delay={0.1}>
-              <HoverCard className="bg-[#278228] text-white rounded-xl py-5 px-4 md:py-10 md:px-6 flex flex-col items-center text-center gap-3 h-full">
+              <HoverCard className="bg-[#278228] text-white rounded-xl py-5 px-4 md:py-10 md:px-6 flex flex-col items-center text-center gap-3 h-full lg:w-[340px]">
                 <img src="/images/Healthcare.svg" alt="" />
                 <p className="text-base leading-relaxed">Preventative healthcare and<br />long-term condition support</p>
               </HoverCard>
             </FadeUp>
             <FadeUp delay={0.2}>
-              <div className="bg-gray-900 text-white rounded-xl py-5 px-4 md:py-10 md:px-6 flex flex-col items-center justify-center text-center h-full">
+              <div className="bg-gray-900 text-white rounded-xl py-5 px-4 md:py-10 md:px-6 flex flex-col items-center justify-center text-center h-full lg:w-[420px]">
                 <p className="text-lg font-semibold leading-relaxed">
                   Community pharmacy is evolving.<br />We intend to lead that evolution,<br />not react to it.
                 </p>
@@ -773,7 +715,7 @@ export default function AboutUs() {
           background: "black",
           color: "white",
           fontSize: "15px",
-          letterSpacing: "0.15em",
+          letterSpacing: "4%",
           textTransform: "uppercase",
           textDecoration: "none",
           fontWeight: 400,
@@ -781,7 +723,7 @@ export default function AboutUs() {
       >
         <style>{`
           .btn-branches { transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1); }
-          .btn-branches:hover { transform: translateY(-3px); }
+          .btn-branches:hover { transform: translateY(0px); }
           .btn-branches:active { transform: translateY(0) scale(0.97); }
 
           /* Top border — left to right */
@@ -789,7 +731,7 @@ export default function AboutUs() {
             content: "";
             position: absolute;
             top: 0; left: 0;
-            width: 100%; height: 2px;
+            width: 100%; height: 1px;
             background: white;
             transform: scaleX(0);
             transform-origin: left;
@@ -800,7 +742,7 @@ export default function AboutUs() {
             content: "";
             position: absolute;
             bottom: 0; right: 0;
-            width: 100%; height: 2px;
+            width: 100%; height: 1px;
             background: white;
             transform: scaleX(0);
             transform-origin: right;
@@ -813,7 +755,7 @@ export default function AboutUs() {
           .btn-branches .b-left {
             position: absolute;
             left: 0; top: 0;
-            width: 2px; height: 100%;
+            width: 1px; height: 100%;
             background: white;
             transform: scaleY(0);
             transform-origin: top;
@@ -823,7 +765,7 @@ export default function AboutUs() {
           .btn-branches .b-right {
             position: absolute;
             right: 0; bottom: 0;
-            width: 2px; height: 100%;
+            width: 1px; height: 100%;
             background: white;
             transform: scaleY(0);
             transform-origin: bottom;

@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Branches from "./pages/Branches";
 import Contact from "./pages/Contact";
+import ThankYou from "./pages/ThankYou";   // ✅ ADD THIS
 import Footer from "./components/Footer";
 
 function App() {
@@ -13,18 +14,17 @@ function App() {
   return (
     <div className="font-sans">
       
-      {/* Navbar always visible */}
       <Navbar />
 
-      {/* Pages */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/branches" element={<Branches />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/thank-you" element={<ThankYou />} />   {/* ✅ ADD THIS */}
       </Routes>
 
-       {location.pathname !== "/" && <Footer />} 
+      {location.pathname !== "/" && <Footer />}
 
     </div>
   );

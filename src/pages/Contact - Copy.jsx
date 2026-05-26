@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import emailjs from "@emailjs/browser";
 
 /* ── Intersection Observer hook for scroll-reveal ── */
 function useInView(options = {}) {
@@ -36,12 +35,6 @@ function Counter({ to, duration = 1200 }) {
   return <span ref={ref}>{val}</span>;
 }
 
-/* ── EmailJS Config ── */
-const EMAILJS_SERVICE_ID       = "service_prashant";
-const EMAILJS_TEMPLATE_ID      = "template_jdili6h";   // Admin email
-const EMAILJS_AUTOREPLY_ID     = "template_97oqimy";   // User auto-reply
-const EMAILJS_PUBLIC_KEY       = "-056hCRVDKEJfG4lk";
-
 export default function ContactUs() {
   const navigate = useNavigate();
 
@@ -74,45 +67,9 @@ export default function ContactUs() {
 
   const submit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    setError("");
-
-    try {
-      const formData = {
-        firstName:  form.firstName,
-        lastName:   form.lastName,
-        phone:      form.phone,
-        email:      form.email,
-        message:    form.message,
-        preference: form.preference || "Not specified",
-      };
-
-      // Admin ko email
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        formData,
-        EMAILJS_PUBLIC_KEY
-      );
-
-      // User ko auto-reply
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_AUTOREPLY_ID,
-        formData,
-        EMAILJS_PUBLIC_KEY
-      );
-
-      navigate("/thank-you", {
-        state: { firstName: form.firstName, email: form.email },
-      });
-
-    } catch (err) {
-      console.error("EmailJS error:", err);
-      setError("Something went wrong. Please try again.");
-    } finally {
-      setLoading(false);
-    }
+    navigate("/thank-you", {
+      state: { firstName: form.firstName, email: form.email },
+    });
   };
 
   return (
@@ -156,7 +113,7 @@ export default function ContactUs() {
           width: 0; height: 2px; background: #278228;
           transition: width 0.35s cubic-bezier(0.22,1,0.36,1);
         }
-        .field-wrap.textarea-1::after {
+        .field-wrap.textarea-1::after{
           bottom: 5px;
         }
         .field-wrap.active::after { width: 100%; }
@@ -253,7 +210,6 @@ export default function ContactUs() {
                         type={type} name={name} value={form[name]} onChange={handle}
                         onFocus={() => setFocused(name)} onBlur={() => setFocused("")}
                         required
-                        autoComplete="off"
                         className="border-0 border-b border-gray-800 focus:outline-none pb-1 text-sm bg-transparent w-full"
                       />
                     </div>
@@ -274,7 +230,6 @@ export default function ContactUs() {
                         type={type} name={name} value={form[name]} onChange={handle}
                         onFocus={() => setFocused(name)} onBlur={() => setFocused("")}
                         required
-                        autoComplete="off"
                         className="border-0 border-b border-gray-800 focus:outline-none pb-1 text-sm bg-transparent w-full"
                       />
                     </div>
@@ -360,7 +315,7 @@ export default function ContactUs() {
               <div className="flex items-center gap-4 flex-wrap">
                 <button
                   type="submit"
-                  disabled={loading || !form.agreed}
+                  disabled={loading}
                   className="btn-draw bg-[#278228] hover:bg-black text-white font-normal text-[15px] uppercase px-8 py-4 transition-colors duration-300 self-start disabled:opacity-60 disabled:cursor-not-allowed"
                   style={{ borderRadius: "4px" }}
                 >

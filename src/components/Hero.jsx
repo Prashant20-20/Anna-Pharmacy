@@ -71,9 +71,9 @@ const Hero = () => {
 
   return (
     <div
-      ref={heroRef}
-      style={{ position: "relative", height: "100vh", width: "100%", overflow: "hidden", backgroundColor: "#000" }}
-    >
+  ref={heroRef}
+  className="relative h-screen w-full overflow-hidden bg-black"
+>
       <style>{`
         @keyframes slowZoom {
           0%,100% { transform: scale(1.08); }
@@ -135,16 +135,9 @@ const Hero = () => {
       {/* ── BG grid layer ── */}
       <div
         ref={bgLayerRef}
-        className="parallax-bg"
-        style={{ position: "absolute", inset: 0 }}
+        className="parallax-bg absolute inset-0"
       >
-        <div style={{
-          position: "absolute", inset: 0,
-          display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
-          gridTemplateRows: "repeat(3, 1fr)",
-          gap: "3px",
-        }}>
+        <div className="absolute inset-0 grid grid-cols-4 grid-rows-3 gap-[3px]">
           {/* Column 1 — 3 separate images */}
           <div className="cell" data-delay="0"   style={{ gridColumn: "1", gridRow: "1" }}>
             <img src="/images/1.jpg" className="img-cell" alt="" style={{ animation: "slowZoom 10s ease-in-out infinite" }} />
@@ -181,108 +174,58 @@ const Hero = () => {
       </div>
 
       {/* ── Center background image — behind content only ── */}
-      <div style={{
-        position: "absolute",
-        top: "50%", left: "50%",
-        transform: "translate(-50%, -50%)",
-        width: "55%",
-        height: "75%",
-        zIndex: 1,
-        overflow: "hidden",
-      }}>
+      <div className="absolute left-1/2 top-1/2 z-[1] h-[75%] w-[55%] -translate-x-1/2 -translate-y-1/2 overflow-hidden">
         <img
-          src="/images/5.jpg"
-          alt=""
-          style={{
-            width: "100%", height: "100%",
-            objectFit: "cover",
-            opacity: 0.7,
-            animation: "panUp 18s ease-in-out infinite",
-          }}
-        />
+  src="/images/5.jpg"
+  alt=""
+  className="h-full w-full object-cover opacity-70 animate-[panUp_18s_ease-in-out_infinite]"
+/>
       </div>
 
       {/* ── Dark overlay — same as original screenshot (0.65) ── */}
-      <div style={{
-        position: "absolute", inset: 0,
-        backgroundColor: "rgba(0,0,0,0.65)",
-        pointerEvents: "none",
-        zIndex: 1,
-      }} />
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-black/65" />
 
       {/* ── Center vignette — slightly darker in middle to help text readability ── */}
-      <div style={{
-        position: "absolute", inset: 0,
-        background: "radial-gradient(ellipse 70% 70% at 50% 50%, rgba(0,0,0,0.35) 0%, transparent 100%)",
-        pointerEvents: "none",
-        zIndex: 2,
-      }} />
+      <div
+  className="pointer-events-none absolute inset-0 z-[2]"
+  style={{
+    background:
+      "radial-gradient(ellipse 70% 70% at 50% 50%, rgba(0,0,0,0.35) 0%, transparent 100%)",
+  }}
+/>
 
       {/* ── Particles ── */}
       <div
-        id="particles-layer"
-        style={{ position: "absolute", inset: 0, pointerEvents: "none", overflow: "hidden", zIndex: 3 }}
-      />
+  id="particles-layer"
+  className="pointer-events-none absolute inset-0 z-[3] overflow-hidden"
+/>
 
       {/* ── Text layer — no box, no panel, just text on overlay ── */}
       <div
-        ref={textLayerRef}
-        className="parallax-text"
-        style={{
-          position: "absolute", inset: 0,
-          zIndex: 10,
-          display: "flex", alignItems: "center", justifyContent: "center",
-          padding: "1rem",
-        }}
-      >
-        <div style={{ textAlign: "center", maxWidth: "800px" }}>
+  ref={textLayerRef}
+  className="parallax-text absolute inset-0 z-10 flex items-center justify-center px-4 py-20"
+>
+        <div className="max-w-[800px] text-center">
 
-          <h2 style={{
-            color: "#fff",
-            fontSize: "clamp(35px, 5vw, 60px)",
-            fontWeight: 200,
-            lineHeight: 1.1,
-            margin: "0 0 4px",
-            opacity: 0,
-            animation: "textSlideUp 0.8s cubic-bezier(0.22,1,0.36,1) 1.1s forwards",
-          }}>
+          <h2
+      className="mb-1 text-[clamp(35px,5vw,60px)] font-extralight leading-[1.1] text-white opacity-0 animate-[textSlideUp_0.8s_cubic-bezier(0.22,1,0.36,1)_1.1s_forwards]"
+    >
             Welcome to
           </h2>
 
-          <h1 style={{
-            color: "#fff",
-            fontSize: "clamp(50px, 7vw, 80px)",
-            fontWeight: 200,
-            lineHeight: 1.1,
-            margin: "0 0 20px",
-            opacity: 0,
-            animation: "textSlideUp 0.9s cubic-bezier(0.22,1,0.36,1) 1.35s forwards",
-          }}>
+          <h1
+      className="mb-5 text-[clamp(50px,7vw,80px)] font-extralight leading-[1.1] text-white opacity-0 animate-[textSlideUp_0.9s_cubic-bezier(0.22,1,0.36,1)_1.35s_forwards]"
+    >
             Anna Pharmacy Group
           </h1>
 
-          <p
-            className="shimmer-text"
-            style={{
-              fontSize: "clamp(17px, 1.5vw, 18px)",
-              fontWeight: 700,
-              marginBottom: "14px",
-              opacity: 0,
-              animation: "shimmer 3s linear 2.2s infinite, textSlideUp 0.7s ease 1.85s forwards",
-            }}
-          >
+          <p className="shimmer-text mb-[14px] text-[clamp(17px,1.5vw,18px)] font-bold opacity-0" style={{ animation: "shimmer 3s linear 2.2s infinite, textSlideUp 0.7s ease 1.85s forwards", }} >
             Investing in Health. Investing in Growth
           </p>
 
-          <p style={{
-            color: "rgba(255,255,255,1)",
-            fontSize: "15px",
-            lineHeight: 1.7,
-            maxWidth: "600px",
-            margin: "0 auto",
-            opacity: 0,
-            animation: "textSlideUp 0.8s cubic-bezier(0.22,1,0.36,1) 2.1s forwards",
-          }}>
+           <p
+      className="mx-auto max-w-[600px] text-[15px] leading-[1.7] text-white opacity-0 animate-[textSlideUp_0.8s_cubic-bezier(0.22,1,0.36,1)_2.1s_forwards]"
+    >
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fermentum diam
             tincidunt lacus pretium, Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             Donec fermentum diam tincidunt lacus pretium,

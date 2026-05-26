@@ -35,31 +35,23 @@ const BranchCard = ({ branch, index }) => {
   return (
     <div
       ref={cardRef}
-      className="card-animate"
+      className="card-animate relative cursor-pointer overflow-hidden rounded-2xl
+  transition-shadow duration-300 ease-in-out"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      style={{
-        borderRadius: "16px",
-        overflow: "hidden",
-        position: "relative",
-        cursor: "pointer",
+      style={{ 
         boxShadow: hovered
           ? "0 20px 40px rgba(0,0,0,0.15)"
-          : "0 2px 10px rgba(0,0,0,0.08)",
-        transition: "box-shadow 0.4s ease",
+          : "0 2px 10px rgba(0,0,0,0.08)", 
       }}
     >
       {/* Static layer */}
       <div>
-        <div style={{ height: "200px", backgroundColor: "#707070", position: "relative" }}>
+        <div className="relative h-[250px] md:h-[330px] bg-[#707070]">
           <img
             src={branch.image}
             alt={branch.name}
-            style={{
-              position: "absolute", inset: 0, top: 15,
-              width: "100%", height: "100%",
-              objectFit: "cover", zIndex: 2,
-            }}
+            className="absolute inset-0 top-[15px] w-full h-full object-cover z-[2]"
             onError={(e) => { e.target.style.display = "none"; }}
           />
         </div>
@@ -75,18 +67,14 @@ const BranchCard = ({ branch, index }) => {
 
       {/* ── Green overlay: bottom → top via translateY ── */}
       <div
-        style={{
-          position: "absolute",
-          top: 0, left: 0, right: 0, bottom: 0,
-          backgroundColor: "#2e7d32",
-          padding: "22px 30px 20px 30px",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "flex-start",
-          overflowY: "auto",
-          transform: hovered ? "translateY(0%)" : "translateY(100%)",
-          transition: "transform 0.55s cubic-bezier(0.4, 0, 0.2, 1)",
-        }}
+        className={`
+        absolute left-0 right-0 bottom-0 top-0 md:top-[85px]
+        bg-[#2e7d32] flex flex-col justify-start
+        overflow-y-auto h-[460px]
+        px-[30px] py-[22px]
+        transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
+        ${hovered ? "translate-y-0" : "translate-y-full"}
+      `}
       >
         <h3 className="text-xl md:text-[28px] font-bold md:leading-8 text-white mb-4">
           {branch.name}
@@ -111,33 +99,25 @@ const BranchCard = ({ branch, index }) => {
         <a
   href={branch.website}
   onClick={(e) => e.stopPropagation()}
-  className="btn-visit"
-  style={{
-    position: "relative",
-    display: "inline-block",
-    marginTop: 14,
-    backgroundColor: "#000",
-    color: "#fff",
-    fontSize: 15,
-    fontWeight: 400,
-    letterSpacing: "0.04em",
-    textTransform: "uppercase",
-    padding: "10px 18px",
-    borderRadius: 4,
-    textDecoration: "none",
-    alignSelf: "flex-start",
-  }}
+  className="btn-visit relative inline-block mt-[14px]
+  bg-black text-white text-[15px] font-normal
+  tracking-[0.04em] uppercase
+  px-[18px] py-[10px]
+  rounded
+  no-underline
+  self-start"
+   
 >
   <style>{`
     .btn-visit { transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1); }
-    .btn-visit:hover { transform: translateY(-3px); }
+    .btn-visit:hover { transform: translateY(0px); }
     .btn-visit:active { transform: translateY(0) scale(0.97); }
 
     .btn-visit::before {
       content: "";
       position: absolute;
       top: 0; left: 0;
-      width: 100%; height: 2px;
+      width: 100%; height: 1px;
       background: white;
       transform: scaleX(0);
       transform-origin: left;
@@ -148,7 +128,7 @@ const BranchCard = ({ branch, index }) => {
       content: "";
       position: absolute;
       bottom: 0; right: 0;
-      width: 100%; height: 2px;
+      width: 100%; height: 1px;
       background: white;
       transform: scaleX(0);
       transform-origin: right;
@@ -161,7 +141,7 @@ const BranchCard = ({ branch, index }) => {
     .btn-visit .b-left {
       position: absolute;
       left: 0; top: 0;
-      width: 2px; height: 100%;
+      width: 1px; height: 100%;
       background: white;
       transform: scaleY(0);
       transform-origin: top;
@@ -171,7 +151,7 @@ const BranchCard = ({ branch, index }) => {
     .btn-visit .b-right {
       position: absolute;
       right: 0; bottom: 0;
-      width: 2px; height: 100%;
+      width: 1px; height: 100%;
       background: white;
       transform: scaleY(0);
       transform-origin: bottom;
@@ -238,12 +218,12 @@ export default function Branches() {
         </section>
 
         {/* Cards */}
-        <section className="py-[65px]">
+        <section className="py-[65px] px-4 md:px-0">
           <div className="sm:mx-6 md:w-[1260px] md:mx-auto">
             <h2 className="text-3xl md:text-5xl font-light text-black mb-14 leading-snug text-center section-heading">
               A <span className="font-bold">Growing</span> Network
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-x-8 md:gap-y-16">
               {branches.map((b, i) => (
                 <BranchCard key={b.id} branch={b} index={i} />
               ))}
