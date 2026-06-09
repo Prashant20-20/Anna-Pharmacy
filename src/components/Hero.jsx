@@ -117,17 +117,17 @@ const Hero = () => {
           background-clip: text;
           animation: shimmer 3s linear 2.2s infinite;
         }
-        @keyframes floatParticle {
-          0%   { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
-          10%  { opacity: 1; }
-          90%  { opacity: 0.1; }
-          100% { transform: translateY(-120vh) translateX(var(--drift)) scale(0.3); opacity: 0; }
-        }
-        .particle {
-          position: absolute; bottom: -10px; border-radius: 50%;
-          background: rgba(255,255,255,0.7);
-          animation: floatParticle linear infinite;
-        }
+        // @keyframes floatParticle {
+        //   0%   { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+        //   10%  { opacity: 1; }
+        //   90%  { opacity: 0.1; }
+        //   100% { transform: translateY(-120vh) translateX(var(--drift)) scale(0.3); opacity: 0; }
+        // }
+        // .particle {
+        //   position: absolute; bottom: -10px; border-radius: 50%;
+        //   background: rgba(255,255,255,0.7);
+        //   animation: floatParticle linear infinite;
+        // }
         .parallax-bg, .parallax-text { transition: transform 0.12s ease-out; }
         .img-cell { width: 100%; height: 100%; object-fit: cover; display: block; }
       `}</style>
@@ -174,16 +174,18 @@ const Hero = () => {
       </div>
 
       {/* ── Center background image — behind content only ── */}
-      <div className="absolute left-1/2 top-1/2 z-[1] h-[75%] w-[55%] -translate-x-1/2 -translate-y-1/2 overflow-hidden">
+      {/* <div className="absolute left-1/2 top-1/2 z-[1] h-[75%] w-[55%] -translate-x-1/2 -translate-y-1/2 overflow-hidden">
         <img
   src="/images/5.jpg"
   alt=""
+  fetchpriority="high"
+  loading="eager"
   className="h-full w-full object-cover opacity-70 animate-[panUp_18s_ease-in-out_infinite]"
 />
-      </div>
+      </div> */}
 
       {/* ── Dark overlay — same as original screenshot (0.65) ── */}
-      <div className="pointer-events-none absolute inset-0 z-[1] bg-black/65" />
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-black/50" />
 
       {/* ── Center vignette — slightly darker in middle to help text readability ── */}
       <div
@@ -220,15 +222,13 @@ const Hero = () => {
           </h1>
 
           <p className="shimmer-text mb-[14px] text-[clamp(17px,1.5vw,18px)] font-bold opacity-0" style={{ animation: "shimmer 3s linear 2.2s infinite, textSlideUp 0.7s ease 1.85s forwards", }} >
-            Investing in Health. Investing in Growth
+            Investing in Health. Investing in Communities.
           </p>
 
            <p
       className="mx-auto max-w-[600px] text-[15px] leading-[1.7] text-white opacity-0 animate-[textSlideUp_0.8s_cubic-bezier(0.22,1,0.36,1)_2.1s_forwards]"
     >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fermentum diam
-            tincidunt lacus pretium, Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Donec fermentum diam tincidunt lacus pretium,
+            Anna Pharmacy Group is a growing network of community pharmacies dedicated to making expert, accessible healthcare available to patients across London and the South East. We exist to make healthcare more personal and closer to home for every patient who walks through our doors. 
           </p>
 
         </div>

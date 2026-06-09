@@ -649,50 +649,7 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* ━━ LEADING THE WAY ━━ */}
-      <section className="bg-white px-6 md:px-16 lg:px-32 py-5 md:py-10">
-        <div className="md:w-[780px] mx-auto">
-          <FadeUp delay={0}>
-            <h2 className="text-3xl md:text-5xl font-light text-black mb-8 md:mb-14">
-              <span className="font-bold">Leading</span> <span className="font-light">The Way</span>
-            </h2>
-          </FadeUp>
-
-          <TeamCardSide
-            name="Jaymil" surname="Patel" role="Director"
-            image="/images/jaymil.webp"
-            bio1="Jaymil Patel joined the family business in 2013 and now leads the strategic direction of Anna Pharmacy Group. Building on the foundations established in 1987, he has overseen its evolution into a structured, multi-site pharmacy group defined by strong governance, clinical ambition and long-term sustainability."
-            bio2="Beyond the organisation, Jaymil plays an active role in shaping the future of community pharmacy."
-            infoCards={[
-              "He serves as Vice Chair of the South West London LPC and sits on the Surrey LPC, contributing to regional strategic discussions and representing the interests of frontline pharmacy contractors.",
-              "His leadership is centred on responsible expansion, disciplined asset stewardship and strengthening the position of community pharmacy within modern primary care.",
-              "He remains committed to preserving the values on which the business was built, while shaping a resilient healthcare group designed to endure for generations.",
-            ]}
-          />
-
-          <TeamCardOverflow
-            name="Aruna" surname="Patel" role="Founder"
-            image="/images/aruna.webp"
-            bio1="In 1987, Aruna Patel (Anna), alongside her husband Michael (Mahesh), founded the first Anna Pharmacy with a simple guiding principle: the patient always comes first. For Aruna, community pharmacy was never just about dispensing medicines it was about service, dignity and treating every individual with respect and care."
-            bio2="Predominantly based at the counter, she became the familiar face of the pharmacy, welcoming patients by name, listening attentively and ensuring that no one left without feeling heard."
-            quotes={[
-              "Her philosophy was clear: exceptional customer service is not an add-on, it is the foundation of healthcare.",
-              "That unwavering commitment to personal service and community trust remains embedded within Anna Pharmacy Group today, forming the cultural backbone of the organisation as it continues to grow.",
-            ]}
-          />
-
-          <TeamCardOverflow
-            name="Mahesh" surname="Patel" role="Founder"
-            image="/images/mahesh.webp"
-            bio1="Mahesh Patel (Michael), husband of Aruna and father of Jaymil, is a qualified pharmacist who trained at the University of Sunderland. Before establishing the business in the United Kingdom, he practised pharmacy in Tanzania, developing a strong foundation in community-based healthcare and professional discipline."
-            bio2="In 1987, Mahesh and Aruna founded their first pharmacy together, starting entirely from scratch. Through hard work, clinical integrity and a deep respect for the communities, they gradually built a trusted local healthcare presence."
-            quotes={[
-              "The growth of the business was shaped not only by professional commitment, but also by the loyalty and support of local families.",
-              "The principles Mahesh brought to the profession, clinical standards, responsibility and long-term thinking, remain embedded within Anna Pharmacy Group today.",
-            ]}
-          />
-        </div>
-      </section>
+       
 
       {/* ━━ SERVING COMMUNITIES ━━ */}
       <section className="md:w-[780px] mx-auto mb-12">

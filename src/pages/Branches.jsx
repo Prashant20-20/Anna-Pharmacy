@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 
 const branches = [
-  { id: 1, name: "Anna Pharmacy Hackbridge", address: ["186 London Road", "Hackbridge", "SM6 7FW"], email: "info@annapharmacy.com", phone: "020 8640 0404", hours: ["Monday to Friday: 9am–6:30pm", "Saturday: 9am–1pm", "Sunday Closed"], website: "#", image: "/images/branch-hackbridge.jpg" },
-  { id: 2, name: "Anna Pharmacy Carshalton", address: ["398 Greenwrythe Lane", "Carshalton", "SM5 1JF"], email: "info@annapharmacy.com", phone: "020 8640 0404", hours: ["Monday to Friday: 9am–6:30pm", "Saturday: 9am–1pm", "Sunday Closed"], website: "#", image: "/images/branch-carshalton.jpg" },
-  { id: 3, name: "Anna Pharmacy The Tudor", address: ["107 Wrythe Lane", "Carshalton", "SM5 2RR"], email: "info@annapharmacy.com", phone: "020 8640 0404", hours: ["Monday to Friday: 9am–6:30pm", "Saturday: 9am–1pm", "Sunday Closed"], website: "#", image: "/images/branch-tudor.jpg" },
+  { id: 1, name: "Anna Pharmacy Carshalton", address: ["398 Greenwrythe Lane", "Carshalton Sutton", "SM5 1JF"], email: "info@annapharmacy.com", phone: "020 8640 0404", hours: ["Monday to Friday: 9am–7pm", "Saturday: 9am–5pm", "Sunday Closed"], website: "https://annap.hhhosting.co.uk/carshalton/", image: "/images/branch-carshalton.jpg" },
+  { id: 2, name: "Anna Pharmacy Hackbridge", address: ["186 London Rd", "Hackbridge Wallington", "SM6 7FW"], email: "info@annapharmacy.com", phone: "020 8669 0833", hours: ["Monday to Friday: 9am–6:30pm", "Saturday: 9am–1pm", "Sunday Closed"], website: "https://annap.hhhosting.co.uk/hackbridge/", image: "/images/branch-hackbridge.jpg" },
+  { id: 3, name: "Anna Pharmacy The Tudor", address: ["107 Wrythe Ln", "Sutton, Carshalton", "SM5 2RR"], email: "info@annapharmacy.com", phone: "020 8644 8972", hours: ["Monday to Friday: 9am–7pm", "Saturday: 9am–1pm", "Sunday Closed"], website: "https://annap.hhhosting.co.uk/tudor/", image: "/images/branch-tudor.jpg" },
   { id: 4, name: "Nima Pharmacy Stoneleigh", address: ["56–58 The Broadway", "Stoneleigh", "KT17 2HS"], email: "info@nimapharmacy.com", phone: "020 8640 0404", hours: ["Monday to Friday: 9am–6:30pm", "Saturday: 9am–1pm", "Sunday Closed"], website: "#", image: "/images/branch-stoneleigh.jpg" },
   { id: 5, name: "Nima Pharmacy Richmond", address: ["50 Friars Stile Road", "Richmond", "TW10 6NQ"], email: "info@nimapharmacy.com", phone: "020 8640 0404", hours: ["Monday to Friday: 9am–6:30pm", "Saturday: 9am–1pm", "Sunday Closed"], website: "#", image: "/images/branch-richmond.jpg" },
-  { id: 6, name: "Patsons Pharmacy", address: ["66 The Broadway", "Stoneleigh", "KT17 2HS"], email: "info@patsons.com", phone: "020 8640 0404", hours: ["Monday to Friday: 9am–6:30pm", "Saturday: 9am–1pm", "Sunday Closed"], website: "#", image: "/images/branch-patsons.jpg" },
-  { id: 7, name: "Townsend Pharmacy", address: ["1 Western Parade", "Reigate", "RH2 8AU"], email: "info@townsend.com", phone: "020 8640 0404", hours: ["Monday to Friday: 9am–6:30pm", "Saturday: 9am–1pm", "Sunday Closed"], website: "#", image: "/images/branch-townsend.jpg" },
-  { id: 8, name: "Wonersh Pharmacy", address: ["The Street, Wonersh", "Guildford", "GU5 0PE"], email: "info@wonersh.com", phone: "020 8640 0404", hours: ["Monday to Friday: 9am–6:30pm", "Saturday: 9am–1pm", "Sunday Closed"], website: "#", image: "/images/branch-wonersh.jpg" },
-  { id: 9, name: "Round The Clock Pharmacy", address: ["69 Church Road", "Barnes", "SW13 9HH"], email: "info@roundtheclock.com", phone: "020 8640 0404", hours: ["Monday to Friday: 9am–6:30pm", "Saturday: 9am–1pm", "Sunday Closed"], website: "#", image: "/images/branch-roundtheclock.jpg" },
+   { id: 6, name: "Patsons Pharmacy", address: ["66 The Broadway", "Stoneleigh", "KT17 2HS"], email: "info@patsons.com", phone: "020 8640 0404", hours: ["Monday to Friday: 9am–6:30pm", "Saturday: 9am–1pm", "Sunday Closed"], website: "#", image: "/images/branch-patsons.jpg" },
+   { id: 7, name: "Townsend Pharmacy", address: ["1 Western Parade", "Reigate", "RH2 8AU"], email: "info@townsend.com", phone: "020 8640 0404", hours: ["Monday to Friday: 9am–6:30pm", "Saturday: 9am–1pm", "Sunday Closed"], website: "#", image: "/images/branch-townsend.jpg" },
+   { id: 8, name: "Wonersh Pharmacy", address: ["The Street, Wonersh", "Guildford", "GU5 0PE"], email: "info@wonersh.com", phone: "020 8640 0404", hours: ["Monday to Friday: 9am–6:30pm", "Saturday: 9am–1pm", "Sunday Closed"], website: "#", image: "/images/branch-wonersh.jpg" },
+   { id: 9, name: "Round The Clock Pharmacy", address: ["69 Church Road", "Barnes", "SW13 9HH"], email: "info@roundtheclock.com", phone: "020 8640 0404", hours: ["Monday to Friday: 9am–6:30pm", "Saturday: 9am–1pm", "Sunday Closed"], website: "#", image: "/images/branch-roundtheclock.jpg" },
 ];
 
 const BranchCard = ({ branch, index }) => {
@@ -80,24 +80,27 @@ const BranchCard = ({ branch, index }) => {
           {branch.name}
         </h3>
         {branch.address.map((l, i) => (
-          <p key={i} style={{ color: "#c8e6c9", fontSize: 15, lineHeight: 1.5 }}>{l}</p>
+          <p key={i} style={{ color: "#fff", fontSize: 15, lineHeight: 1.5 }}>{l}</p>
         ))}
         <div style={{ marginTop: 10 }}>
-          <p style={{ color: "#c8e6c9", fontSize: 15 }}>
-            <strong style={{ color: "#fff" }}>E. </strong>{branch.email}
+          <p style={{ color: "#fff", fontSize: 15 }}>
+            <strong style={{ color: "#fff" }}>E. </strong><a href={`mailto:${branch.email}`} style={{ color: "#fff" }}>
+  {branch.email}
+</a>
           </p>
-          <p style={{ color: "#c8e6c9", fontSize: 15 }}>
-            <strong style={{ color: "#fff" }}>T. </strong>{branch.phone}
+          <p style={{ color: "#fff", fontSize: 15 }}>
+            <strong style={{ color: "#fff" }}>T. </strong><a href={`tel:${branch.phone}`} style={{ color: "#fff" }}>{branch.phone}</a>
           </p>
         </div>
         <div style={{ marginTop: 10 }}>
           <p style={{ color: "#fff", fontSize: 15, fontWeight: 700, marginBottom: 4 }}>Business Hours</p>
           {branch.hours.map((l, i) => (
-            <p key={i} style={{ color: "#c8e6c9", fontSize: 15, lineHeight: 1.5 }}>{l}</p>
+            <p key={i} style={{ color: "#fff", fontSize: 15, lineHeight: 1.5 }}>{l}</p>
           ))}
         </div>
         <a
   href={branch.website}
+  target="_blank" rel="noopener noreferrer"
   onClick={(e) => e.stopPropagation()}
   className="btn-visit relative inline-block mt-[14px]
   bg-black text-white text-[15px] font-normal
