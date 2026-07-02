@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import emailjs from "@emailjs/browser";
+import { Helmet } from "react-helmet-async";
 
 /* ── Intersection Observer hook for scroll-reveal ── */
 function useInView(options = {}) {
@@ -116,6 +117,19 @@ export default function ContactUs() {
   };
 
   return (
+
+    <>
+    <Helmet>
+      <title>Contact Us | Anna Pharmacy Group</title>
+      <meta
+        name="description"
+        content="Learn about Anna Pharmacy Group, our history, values, leadership team and commitment to providing trusted community pharmacy services across London and the South East."
+      />
+      <link
+        rel="canonical"
+        href="https://annar.hhhosting.co.uk/company/about-us"
+      />
+    </Helmet>
     <main className="bg-white font-sans text-gray-900 min-h-screen overflow-x-hidden">
       <style>{`
         /* ── Scroll reveal ── */
@@ -215,12 +229,12 @@ export default function ContactUs() {
       <section className="bg-[#3a3a3a] h-[200px] md:h-[470px] overflow-hidden relative">
         <div className="h-[200px] md:h-full">
           <img
-            src="/images/about-main-banner.jpg"
+            src="/images/aboutus-main-banner.webp"
             alt="Contact Us"
-            className="banner-img w-full h-full object-cover opacity-20"
+            className="banner-img w-full h-full object-cover opacity-90"
           />
         </div>
-        <div className="h-[60px] md:h-[470px] flex items-center flex-row w-full px-6 md:px-12 absolute top-[120px] md:top-0 md:bg-black/70">
+        <div className="h-[60px] md:h-[470px] flex items-center flex-row w-full px-6 md:px-12 absolute top-[120px] md:top-0 md:bg-black/10">
           <h1 className="banner-title text-4xl md:text-[65px] text-white font-extralight">
             <span className="font-bold">Contact</span> Us
           </h1>
@@ -427,13 +441,13 @@ export default function ContactUs() {
             {/* QR Code */}
             <div className="info-card flex items-center gap-4 border border-gray-200 rounded-sm p-4" style={{ maxWidth: "280px" }}>
               <div
-                className="flex-shrink-0 w-16 h-16 bg-gray-900 rounded-sm"
+                className="hidden md:block flex-shrink-0 w-16 h-16 bg-gray-900 rounded-sm"
                 style={{
-                  backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23111'/%3E%3Crect x='10' y='10' width='30' height='30' fill='none' stroke='white' stroke-width='5'/%3E%3Crect x='20' y='20' width='10' height='10' fill='white'/%3E%3Crect x='60' y='10' width='30' height='30' fill='none' stroke='white' stroke-width='5'/%3E%3Crect x='70' y='20' width='10' height='10' fill='white'/%3E%3Crect x='10' y='60' width='30' height='30' fill='none' stroke='white' stroke-width='5'/%3E%3Crect x='20' y='70' width='10' height='10' fill='white'/%3E%3Crect x='60' y='55' width='8' height='8' fill='white'/%3E%3Crect x='72' y='55' width='8' height='8' fill='white'/%3E%3Crect x='60' y='67' width='8' height='8' fill='white'/%3E%3Crect x='72' y='67' width='8' height='8' fill='white'/%3E%3Crect x='60' y='79' width='20' height='8' fill='white'/%3E%3C/svg%3E")`,
+                  backgroundImage: `url("/images/qr-code.jpg")`,
                   backgroundSize: "cover",
                 }}
               />
-              <div>
+              <div className="hidden md:block ">
                 <p className="text-sm text-black">Scan to</p>
                 <p className="text-sm font-bold text-black">Connect with us</p>
               </div>
@@ -442,7 +456,7 @@ export default function ContactUs() {
             {/* View All Branches */}
             <Link
               to="/branches"
-              className="btn-draw bg-black hover:bg-[#278228] text-white font-normal text-[15px] uppercase px-6 py-4 transition-colors duration-300 text-center inline-block"
+              className="btn-draw bg-black hover:bg-[#278228] text-white mt-4 font-normal text-[15px] uppercase px-6 py-4 transition-colors duration-300 text-center inline-block"
               style={{ maxWidth: "280px", borderRadius: "4px" }}
             >
               <span className="bd-l" />
@@ -453,5 +467,6 @@ export default function ContactUs() {
         </div>
       </section>
     </main>
+    </>
   );
 }

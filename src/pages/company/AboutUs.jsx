@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    ANIMATION HOOK — Intersection Observer
@@ -343,7 +344,7 @@ function ParallaxBanner({ src, alt, children, height = "md:h-[470px]", overlay =
   return (
     <div ref={ref} className={`bg-[#3a3a3a] h-[200px] ${height} overflow-hidden relative`}>
       <div ref={imgRef} className="absolute inset-0" style={{ willChange: "transform" }}>
-        <img src={src} alt={alt} className={`w-full h-full object-cover ${overlay ? "opacity-20" : ""}`} />
+        <img src={src} alt={alt} className={`w-full h-full object-cover ${overlay ? "opacity-90" : ""}`} />
       </div>
       {children}
     </div>
@@ -354,7 +355,7 @@ function HeroTitle() {
   const [visible, setVisible] = useState(false);
   useEffect(() => { setTimeout(() => setVisible(true), 200); }, []);
   return (
-    <div className="h-[60px] md:h-[470px] flex items-center flex-row w-full px-6 md:px-12 absolute top-[120px] md:top-0 md:bg-black/70">
+    <div className="h-[60px] md:h-[470px] flex items-center flex-row w-full px-6 md:px-12 absolute top-[120px] md:top-0 md:bg-black/10">
       <h1
         className="text-4xl md:text-[65px] text-white font-extralight"
         style={{
@@ -374,6 +375,20 @@ function HeroTitle() {
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 export default function AboutUs() {
   return (
+
+     <>
+    <Helmet>
+      <title>About Us | Anna Pharmacy Group</title>
+      <meta
+        name="description"
+        content="Learn about Anna Pharmacy Group, our history, values, leadership team and commitment to providing trusted community pharmacy services across London and the South East."
+      />
+      <link
+        rel="canonical"
+        href="https://annar.hhhosting.co.uk/company/about-us"
+      />
+    </Helmet>
+    
     <main className="bg-white font-sans text-black">
 
       <style>{`
@@ -383,7 +398,7 @@ export default function AboutUs() {
       `}</style>
 
       {/* ━━ PAGE TITLE ━━ */}
-      <ParallaxBanner src="/images/about-main-banner.jpg" alt="About Us">
+      <ParallaxBanner src="/images/aboutus-main-banner.webp" alt="About Us">
         <HeroTitle />
       </ParallaxBanner>
 
@@ -450,9 +465,9 @@ export default function AboutUs() {
         <div className="md:w-[780px] mx-auto">
           <ScaleIn delay={0}>
             <div className="relative rounded-[15px] overflow-hidden h-56 md:h-[345px] bg-gray-700 text-center">
-              <img src="/images/philosophy-bg.jpg" alt="Our Philosophy" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-black/40" />
-              <div className="absolute inset-0 bg-[#278228]/50" />
+              <img src="/images/About-Us-Our-Philosophy.webp" alt="Our Philosophy" className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-black/10" />
+              <div className="absolute inset-0 bg-[#278228]/10" />
               <div className="absolute inset-0 flex flex-col items-center justify-center p-8 md:p-12">
                 <FadeUp delay={0.3}>
                   <h2 className="text-white text-3xl md:text-5xl font-bold mb-4">Our Philosophy</h2>
@@ -574,9 +589,9 @@ export default function AboutUs() {
                 <div className="w-full md:h-[470px] overflow-hidden">
                   <div className="relative w-full h-[470px]">
                     {[
-                      { src: "/images/pharmacy1.webp", alt: "Pharmacy 1", cls: "absolute top-0 left-0 w-full md:w-[55%] h-[48%] object-cover rounded-xl" },
-                      { src: "/images/pharmacy2.webp", alt: "Pharmacy 2", cls: "absolute top-[20%] left-[25%] w-full md:w-[55%] h-[55%] object-cover rounded-xl shadow-lg z-10" },
-                      { src: "/images/pharmacy3.webp", alt: "Pharmacy 3", cls: "absolute bottom-0 left-0 w-full md:w-[55%] h-[48%] object-cover rounded-xl" },
+                      { src: "/images/Responsible-Growth-image1.webp", alt: "Pharmacy 1", cls: "absolute top-0 left-0 w-full md:w-[55%] h-[48%] object-cover rounded-xl" },
+                      { src: "/images/Responsible-Growth-image2.webp", alt: "Pharmacy 2", cls: "absolute top-[20%] left-[25%] w-full md:w-[55%] h-[55%] object-cover rounded-xl shadow-lg z-10" },
+                      { src: "/images/Responsible-Growth-image3.webp", alt: "Pharmacy 3", cls: "absolute bottom-0 left-0 w-full md:w-[55%] h-[48%] object-cover rounded-xl" },
                     ].map((img, i) => (
                       <img
                         key={img.alt}
@@ -605,9 +620,9 @@ export default function AboutUs() {
         <div className="md:w-[780px] mx-auto">
           <ScaleIn delay={0}>
             <div className="relative rounded-[15px] overflow-hidden h-56 md:h-[345px] text-center">
-              <img src="/images/philosophy-bg.jpg" alt="Our Philosophy" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-black/40" />
-              <div className="absolute inset-0 bg-[#278228]/50" />
+              <img src="/images/About-Us-Our-Commitment.webp" alt="Our Philosophy" className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-black/10" />
+              <div className="absolute inset-0 bg-[#278228]/10" />
               <div className="absolute inset-0 flex flex-col items-center justify-center p-8 md:p-12">
                 <FadeUp delay={0.3}>
                   <h2 className="text-white text-3xl md:text-5xl font-bold mb-4">Our Commitment</h2>
@@ -743,5 +758,6 @@ export default function AboutUs() {
       </section>
 
     </main>
+    </>
   );
 }

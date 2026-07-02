@@ -289,7 +289,9 @@ const Navbar = () => {
 
         {/* Logo */}
         <div className="flex items-center p-2 nav-logo-animated">
-          <Link to="/"><img src="/logo.svg" alt="Logo" className="w-[140px] md:w-[170px] !outline-none" /></Link>
+          <Link to="/"><img src="/logo.svg" alt="Logo" width={131}
+    height={65} className="w-[140px] md:w-[170px] h-auto !outline-none"  loading="eager"
+    decoding="async" /></Link>
         </div>
 
         {/* Desktop Menu */}

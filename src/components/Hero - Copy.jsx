@@ -117,69 +117,82 @@ const Hero = () => {
           background-clip: text;
           animation: shimmer 3s linear 2.2s infinite;
         }
+        // @keyframes floatParticle {
+        //   0%   { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+        //   10%  { opacity: 1; }
+        //   90%  { opacity: 0.1; }
+        //   100% { transform: translateY(-120vh) translateX(var(--drift)) scale(0.3); opacity: 0; }
+        // }
+        // .particle {
+        //   position: absolute; bottom: -10px; border-radius: 50%;
+        //   background: rgba(255,255,255,0.7);
+        //   animation: floatParticle linear infinite;
+        // }
         .parallax-bg, .parallax-text { transition: transform 0.12s ease-out; }
         .img-cell { width: 100%; height: 100%; object-fit: cover; display: block; }
       `}</style>
 
-      {/* ── BG grid layer — 4 columns x 3 rows = 12 images ── */}
+      {/* ── BG grid layer ── */}
       <div
         ref={bgLayerRef}
         className="parallax-bg absolute inset-0"
       >
         <div className="absolute inset-0 grid grid-cols-4 grid-rows-3 gap-[3px]">
-          {/* Row 1 */}
-          <div className="cell" data-delay="0" style={{ gridColumn: "1", gridRow: "1" }}>
-            <img src="/collage-img/1.webp" className="img-cell" alt="" style={{ animation: "slowZoom 10s ease-in-out infinite" }} />
+          {/* Column 1 — 3 separate images */}
+          <div className="cell" data-delay="0"   style={{ gridColumn: "1", gridRow: "1" }}>
+            <img src="/images/1.jpg" className="img-cell" alt="" style={{ animation: "slowZoom 10s ease-in-out infinite" }} />
           </div>
-          <div className="cell" data-delay="80" style={{ gridColumn: "2", gridRow: "1" }}>
-            <img src="/collage-img/2.webp" className="img-cell" alt="" style={{ animation: "panRight 14s ease-in-out infinite" }} />
+          <div className="cell" data-delay="150" style={{ gridColumn: "1", gridRow: "2" }}>
+            <img src="/images/2.jpg" className="img-cell" alt="" style={{ animation: "panUp 12s ease-in-out infinite", animationDelay: "-3s" }} />
           </div>
-          <div className="cell" data-delay="160" style={{ gridColumn: "3", gridRow: "1" }}>
-            <img src="/collage-img/3.webp" className="img-cell" alt="" style={{ animation: "panLeft 12s ease-in-out infinite" }} />
-          </div>
-          <div className="cell" data-delay="240" style={{ gridColumn: "4", gridRow: "1" }}>
-            <img src="/collage-img/4.webp" className="img-cell" alt="" style={{ animation: "slowZoom 12s ease-in-out infinite", animationDelay: "-5s" }} />
+          <div className="cell" data-delay="300" style={{ gridColumn: "1", gridRow: "3" }}>
+            <img src="/images/3.jpg" className="img-cell" alt="" style={{ animation: "slowZoom 13s ease-in-out infinite", animationDelay: "-6s" }} />
           </div>
 
-          {/* Row 2 */}
-          <div className="cell" data-delay="320" style={{ gridColumn: "1", gridRow: "2" }}>
-            <img src="/collage-img/5.webp" className="img-cell" alt="" style={{ animation: "panUp 12s ease-in-out infinite", animationDelay: "-3s" }} />
+          {/* Columns 2-3 — center spanning images */}
+          <div className="cell" data-delay="120" style={{ gridColumn: "2 / 4", gridRow: "1" }}>
+            <img src="/images/4.jpg" className="img-cell" alt="" style={{ animation: "panRight 14s ease-in-out infinite" }} />
           </div>
-          <div className="cell" data-delay="400" style={{ gridColumn: "2", gridRow: "2" }}>
-            <img src="/collage-img/6.webp" className="img-cell" alt="" style={{ animation: "slowZoom 11s ease-in-out infinite", animationDelay: "-4s" }} />
+          <div className="cell" data-delay="240" style={{ gridColumn: "2 / 4", gridRow: "2" }}>
+            <img src="/images/5.jpg" className="img-cell" alt="" style={{ animation: "panLeft 11s ease-in-out infinite", animationDelay: "-4s" }} />
           </div>
-          <div className="cell" data-delay="480" style={{ gridColumn: "3", gridRow: "2" }}>
-            <img src="/collage-img/7.webp" className="img-cell" alt="" style={{ animation: "panRight 16s ease-in-out infinite", animationDelay: "-6s" }} />
-          </div>
-          <div className="cell" data-delay="560" style={{ gridColumn: "4", gridRow: "2" }}>
-            <img src="/collage-img/8.webp" className="img-cell" alt="" style={{ animation: "panUp 16s ease-in-out infinite", animationDelay: "-7s" }} />
+          <div className="cell" data-delay="360" style={{ gridColumn: "2 / 4", gridRow: "3" }}>
+            <img src="/images/6.jpg" className="img-cell" alt="" style={{ animation: "panRight 15s ease-in-out infinite", animationDelay: "-2s" }} />
           </div>
 
-          {/* Row 3 */}
-          <div className="cell" data-delay="640" style={{ gridColumn: "1", gridRow: "3" }}>
-            <img src="/collage-img/9.webp" className="img-cell" alt="" style={{ animation: "slowZoom 13s ease-in-out infinite", animationDelay: "-6s" }} />
+          {/* Column 4 — 3 separate images */}
+          <div className="cell" data-delay="60"  style={{ gridColumn: "4", gridRow: "1" }}>
+            <img src="/images/7.jpg" className="img-cell" alt="" style={{ animation: "slowZoom 12s ease-in-out infinite", animationDelay: "-5s" }} />
           </div>
-          <div className="cell" data-delay="720" style={{ gridColumn: "2", gridRow: "3" }}>
-            <img src="/collage-img/10.webp" className="img-cell" alt="" style={{ animation: "panLeft 15s ease-in-out infinite", animationDelay: "-2s" }} />
+          <div className="cell" data-delay="210" style={{ gridColumn: "4", gridRow: "2" }}>
+            <img src="/images/8.jpg" className="img-cell" alt="" style={{ animation: "panUp 16s ease-in-out infinite", animationDelay: "-7s" }} />
           </div>
-          <div className="cell" data-delay="800" style={{ gridColumn: "3", gridRow: "3" }}>
-            <img src="/collage-img/11.webp" className="img-cell" alt="" style={{ animation: "slowZoom 14s ease-in-out infinite", animationDelay: "-3s" }} />
-          </div>
-          <div className="cell" data-delay="880" style={{ gridColumn: "4", gridRow: "3" }}>
-            <img src="/collage-img/15.webp" className="img-cell" alt="" style={{ animation: "panUp 14s ease-in-out infinite", animationDelay: "-8s" }} />
+          <div className="cell" data-delay="420" style={{ gridColumn: "4", gridRow: "3" }}>
+            <img src="/images/1.jpg" className="img-cell" alt="" style={{ animation: "slowZoom 11s ease-in-out infinite", animationDelay: "-9s" }} />
           </div>
         </div>
       </div>
 
-      {/* ── Light overlay — lightened so photos stay clearly visible ── */}
-      <div className="pointer-events-none absolute inset-0 z-[1] bg-black/60" />
+      {/* ── Center background image — behind content only ── */}
+      {/* <div className="absolute left-1/2 top-1/2 z-[1] h-[75%] w-[55%] -translate-x-1/2 -translate-y-1/2 overflow-hidden">
+        <img
+  src="/images/5.jpg"
+  alt=""
+  fetchpriority="high"
+  loading="eager"
+  className="h-full w-full object-cover opacity-70 animate-[panUp_18s_ease-in-out_infinite]"
+/>
+      </div> */}
 
-      {/* ── Center vignette — light darkening in middle just enough for text readability ── */}
+      {/* ── Dark overlay — same as original screenshot (0.65) ── */}
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-black/50" />
+
+      {/* ── Center vignette — slightly darker in middle to help text readability ── */}
       <div
   className="pointer-events-none absolute inset-0 z-[2]"
   style={{
     background:
-      "radial-gradient(ellipse 70% 70% at 50% 50%, rgba(0,0,0,0.18) 0%, transparent 100%)",
+      "radial-gradient(ellipse 70% 70% at 50% 50%, rgba(0,0,0,0.35) 0%, transparent 100%)",
   }}
 />
 

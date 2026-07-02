@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 function useInView(options = {}) {
   const ref = useRef(null);
@@ -70,7 +71,7 @@ function ParallaxBanner({ src, alt, children, height = "md:h-[470px]" }) {
   return (
     <div ref={ref} className={`bg-[#3a3a3a] h-[200px] ${height} overflow-hidden relative`}>
       <div ref={imgRef} className="absolute inset-0" style={{ willChange: "transform" }}>
-        <img src={src} alt={alt} className="w-full h-full object-cover opacity-20" />
+        <img src={src} alt={alt} className="w-full h-full object-cover opacity-90" />
       </div>
       {children}
     </div>
@@ -81,7 +82,7 @@ function HeroTitle() {
   const [visible, setVisible] = useState(false);
   useEffect(() => { setTimeout(() => setVisible(true), 200); }, []);
   return (
-    <div className="h-[60px] md:h-[470px] flex items-center w-full px-6 md:px-12 absolute top-[120px] md:top-0 md:bg-black/70">
+    <div className="h-[60px] md:h-[470px] flex items-center w-full px-6 md:px-12 absolute top-[120px] md:top-0 md:bg-black/10">
       <h1 className="text-4xl md:text-[65px] text-white font-extralight" style={{
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(30px)",
@@ -331,9 +332,21 @@ const TeamCardOverflow = ({ name, surname, role, image, bio1, bio2, quotes = [] 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 export default function TheTeam() {
   return (
+    <>
+    <Helmet>
+      <title>The Team | Anna Pharmacy Group</title>
+      <meta
+        name="description"
+        content="Learn about Anna Pharmacy Group, our history, values, leadership team and commitment to providing trusted community pharmacy services across London and the South East."
+      />
+      <link
+        rel="canonical"
+        href="https://annar.hhhosting.co.uk/company/about-us"
+      />
+    </Helmet>
     <main className="bg-white font-sans text-black">
 
-      <ParallaxBanner src="/images/about-main-banner.jpg" alt="The Team">
+      <ParallaxBanner src="/images/aboutus-main-banner.webp" alt="The Team">
         <HeroTitle />
       </ParallaxBanner>
 
@@ -347,7 +360,7 @@ export default function TheTeam() {
 
           <TeamCardSide
             name="Jaymil" surname="Patel" role="Director"
-            image="/images/jaymil.webp"
+            image="/images/jaymil-n.webp"
             bio1="Jaymil Patel joined the family business in 2013 and now leads the strategic direction of Anna Pharmacy Group. Building on the foundations established in 1987, he has overseen its evolution into a structured, multi-site pharmacy group defined by strong governance, clinical ambition and long-term sustainability."
             bio2="Beyond the organisation, Jaymil plays an active role in shaping the future of community pharmacy."
             infoCards={[
@@ -359,7 +372,7 @@ export default function TheTeam() {
 
           <TeamCardOverflow
             name="Aruna" surname="Patel" role="Founder"
-            image="/images/aruna.webp"
+            image="/images/Aruna-Patel.webp"
             bio1="In 1987, Aruna Patel (Anna), alongside her husband Michael (Mahesh), founded the first Anna Pharmacy with a simple guiding principle: the patient always comes first. For Aruna, community pharmacy was never just about dispensing medicines it was about service, dignity and treating every individual with respect and care."
             bio2="Predominantly based at the counter, she became the familiar face of the pharmacy, welcoming patients by name, listening attentively and ensuring that no one left without feeling heard."
             quotes={[
@@ -370,7 +383,7 @@ export default function TheTeam() {
 
           <TeamCardOverflow
             name="Mahesh" surname="Patel" role="Founder"
-            image="/images/mahesh.webp"
+            image="/images/Mahesh-Patel.webp"
             bio1="Mahesh Patel (Michael), husband of Aruna and father of Jaymil, is a qualified pharmacist who trained at the University of Sunderland. Before establishing the business in the United Kingdom, he practised pharmacy in Tanzania, developing a strong foundation in community-based healthcare and professional discipline."
             bio2="In 1987, Mahesh and Aruna founded their first pharmacy together, starting entirely from scratch. Through hard work, clinical integrity and a deep respect for the communities, they gradually built a trusted local healthcare presence."
             quotes={[
@@ -382,5 +395,6 @@ export default function TheTeam() {
       </section>
 
     </main>
+    </>
   );
 }
