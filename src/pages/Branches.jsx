@@ -3,15 +3,15 @@ import { Helmet } from "react-helmet-async";
 
 
 const branches = [
-  { id: 1, name: "Anna Pharmacy Carshalton", address: ["398 Greenwrythe Lane", "Carshalton Sutton", "SM5 1JF"], email: "info@annapharmacy.com", phone: "020 8640 0404", hours: ["Monday to Friday: 9am–7pm", "Saturday: 9am–5pm", "Sunday Closed"], website: "https://annap.hhhosting.co.uk/carshalton/", image: "/images/Carshalton-Image-Branches.webp" },
+  { id: 1, name: "Anna Pharmacy Carshalton", address: ["398 Greenwrythe Lane", "Carshalton Sutton", "SM5 1JF"], email: "info@annapharmacy.com", phone: "020 8640 0404", hours: ["Monday to Friday: 9am–7pm", "Saturday: 9am–5pm", "Sunday Closed"], website: "https://annap.hhhosting.co.uk/carshalton/", image: "/images/Carsholton-Store.webp" },
   { id: 2, name: "Anna Pharmacy Hackbridge", address: ["186 London Rd", "Hackbridge Wallington", "SM6 7FW"], email: "info@annapharmacy.com", phone: "020 8669 0833", hours: ["Monday to Friday: 9am–6:30pm", "Saturday: 9am–1pm", "Sunday Closed"], website: "https://annap.hhhosting.co.uk/hackbridge/", image: "/images/Hackerbridge-Image-Branches-1.webp" },
   { id: 3, name: "Anna Pharmacy The Tudor", address: ["107 Wrythe Ln", "Sutton, Carshalton", "SM5 2RR"], email: "info@annapharmacy.com", phone: "020 8644 8972", hours: ["Monday to Friday: 9am–7pm", "Saturday: 9am–1pm", "Sunday Closed"], website: "https://annap.hhhosting.co.uk/tudor/", image: "/images/branch-tudor.webp" },
-  { id: 4, name: "Nima Pharmacy Stoneleigh", address: ["56–58 The Broadway", "Stoneleigh", "KT17 2HS"], email: "info@nimapharmacy.com", phone: "020 8640 0404", hours: ["Monday to Friday: 9am–6:30pm", "Saturday: 9am–1pm", "Sunday Closed"], website: "#", image: "/images/no-img.webp" },
-  { id: 5, name: "Nima Pharmacy Richmond", address: ["50 Friars Stile Road", "Richmond", "TW10 6NQ"], email: "info@nimapharmacy.com", phone: "020 8640 0404", hours: ["Monday to Friday: 9am–6:30pm", "Saturday: 9am–1pm", "Sunday Closed"], website: "#", image: "/images/no-img.webp" },
-   { id: 6, name: "Patsons Pharmacy", address: ["66 The Broadway", "Stoneleigh", "KT17 2HS"], email: "info@patsons.com", phone: "020 8640 0404", hours: ["Monday to Friday: 9am–6:30pm", "Saturday: 9am–1pm", "Sunday Closed"], website: "#", image: "/images/no-img.webp" },
-   { id: 7, name: "Townsend Pharmacy", address: ["1 Western Parade", "Reigate", "RH2 8AU"], email: "info@townsend.com", phone: "020 8640 0404", hours: ["Monday to Friday: 9am–6:30pm", "Saturday: 9am–1pm", "Sunday Closed"], website: "#", image: "/images/no-img.webp" },
-   { id: 8, name: "Wonersh Pharmacy", address: ["The Street, Wonersh", "Guildford", "GU5 0PE"], email: "info@wonersh.com", phone: "020 8640 0404", hours: ["Monday to Friday: 9am–6:30pm", "Saturday: 9am–1pm", "Sunday Closed"], website: "#", image: "/images/no-img.webp" },
-   { id: 9, name: "Round The Clock Pharmacy", address: ["69 Church Road", "Barnes", "SW13 9HH"], email: "info@roundtheclock.com", phone: "020 8640 0404", hours: ["Monday to Friday: 9am–6:30pm", "Saturday: 9am–1pm", "Sunday Closed"], website: "#", image: "/images/no-img.webp" },
+  { id: 4, name: "Nima Pharmacy Stoneleigh", address: ["56–58 The Broadway", "Stoneleigh", "KT17 2HS"], email: "info@nimapharmacy.com", phone: "020 8640 0404", hours: ["Monday to Friday: 9am–6:30pm", "Saturday: 9am–1pm", "Sunday Closed"], website: "#", image: "/images/Nima-Stoneleigh-Store.webp" },
+  { id: 5, name: "Nima Pharmacy Richmond", address: ["50 Friars Stile Road", "Richmond", "TW10 6NQ"], email: "info@nimapharmacy.com", phone: "020 8640 0404", hours: ["Monday to Friday: 9am–6:30pm", "Saturday: 9am–1pm", "Sunday Closed"], website: "#", image: "/images/Nima-Richmond-Store.webp" },
+   { id: 6, name: "Patsons Pharmacy", address: ["66 The Broadway", "Stoneleigh", "KT17 2HS"], email: "info@patsons.com", phone: "020 8640 0404", hours: ["Monday to Friday: 9am–6:30pm", "Saturday: 9am–1pm", "Sunday Closed"], website: "#", image: "/images/Patsons-Store.webp" },
+   { id: 7, name: "Townsend Pharmacy", address: ["1 Western Parade", "Reigate", "RH2 8AU"], email: "info@townsend.com", phone: "020 8640 0404", hours: ["Monday to Friday: 9am–6:30pm", "Saturday: 9am–1pm", "Sunday Closed"], website: "#", image: "/images/Townsend-Store.webp" },
+   { id: 8, name: "Wonersh Pharmacy", address: ["The Street, Wonersh", "Guildford", "GU5 0PE"], email: "info@wonersh.com", phone: "020 8640 0404", hours: ["Monday to Friday: 9am–6:30pm", "Saturday: 9am–1pm", "Sunday Closed"], website: "#", image: "/images/Wonersh-Store.webp" },
+   { id: 9, name: "Round The Clock Pharmacy", address: ["69 Church Road", "Barnes", "SW13 9HH"], email: "info@roundtheclock.com", phone: "020 8640 0404", hours: ["Monday to Friday: 9am–6:30pm", "Saturday: 9am–1pm", "Sunday Closed"], website: "#", image: "/images/Roundtheclock-Store.webp" },
 ];
 
 const BranchCard = ({ branch, index }) => {
@@ -53,7 +53,7 @@ const BranchCard = ({ branch, index }) => {
           <img
             src={branch.image}
             alt={branch.name}
-            className="absolute inset-0 top-[0] w-full h-full object-cover z-[2]"
+            className="absolute inset-0 top-[0] w-full h-full object-inherit z-[2]"
             onError={(e) => { e.target.style.display = "none"; }}
           />
         </div>

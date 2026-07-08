@@ -6,7 +6,7 @@ const Hero = () => {
   const textLayerRef = useRef(null);
 
   useEffect(() => {
-    const cells = heroRef.current?.querySelectorAll(".cell");
+    const cells = heroRef.current?.querySelectorAll(".hero-cell");
     cells?.forEach((cell) => {
       const delay = parseInt(cell.dataset.delay) || 0;
       setTimeout(() => cell.classList.add("revealed"), 300 + delay);
@@ -104,100 +104,19 @@ const Hero = () => {
 
   return (
     <div ref={heroRef} className="relative h-screen w-full overflow-hidden bg-black">
-      <style>{`
-        @keyframes slowZoom {
-          0%,100% { transform: scale(1.08); }
-          50% { transform: scale(1.18); }
-        }
-
-        @keyframes panRight {
-          0%,100% { transform: scale(1.12) translateX(-4%); }
-          50% { transform: scale(1.12) translateX(4%); }
-        }
-
-        @keyframes panLeft {
-          0%,100% { transform: scale(1.12) translateX(4%); }
-          50% { transform: scale(1.12) translateX(-4%); }
-        }
-
-        @keyframes panUp {
-          0%,100% { transform: scale(1.12) translateY(4%); }
-          50% { transform: scale(1.12) translateY(-4%); }
-        }
-
-        @keyframes cellReveal {
-          from { opacity: 0; transform: scale(1.08); }
-          to { opacity: 1; transform: scale(1); }
-        }
-
-        .cell {
-          opacity: 1;
-          overflow: hidden;
-        }
-
-        .cell.revealed {
-          animation: cellReveal 0.7s cubic-bezier(0.22,1,0.36,1) forwards;
-        }
-
-        @keyframes textSlideUp {
-          from { opacity: 0; transform: translateY(24px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes shimmer {
-          0% { background-position: -200% center; }
-          100% { background-position: 200% center; }
-        }
-
-        .shimmer-text {
-          background: linear-gradient(90deg,
-            rgba(255,255,255,0.5) 0%, #fff 30%,
-            rgba(255,255,255,0.5) 60%, #fff 80%,
-            rgba(255,255,255,0.5) 100%);
-          background-size: 200% auto;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-          animation: shimmer 3s linear 2.2s infinite;
-        }
-
-        .parallax-bg,
-        .parallax-text {
-          transition: transform 0.12s ease-out;
-        }
-
-        .img-cell {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          display: block;
-        }
-
-        @media (max-width: 767px) {
-          .parallax-bg,
-          .parallax-text {
-            transform: none !important;
-            transition: none !important;
-          }
-
-          .img-cell {
-            animation: none !important;
-          }
-        }
-      `}</style>
-
-      <div ref={bgLayerRef} className="parallax-bg absolute inset-0">
+     
+      <div ref={bgLayerRef} className="hero-parallax-bg absolute inset-0">
         <div className="absolute inset-0 grid grid-cols-4 grid-rows-3 gap-[3px]">
           {images.map((img) => (
             <div
               key={img.src}
-              className="cell"
+              className="hero-cell"
               data-delay={img.delay}
               style={{ gridColumn: img.col, gridRow: img.row }}
             >
               <img
                 src={img.src}
-                className="img-cell"
+                className="hero-img-cell"
                 alt=""
                 width={400}
                 height={300}
@@ -228,24 +147,24 @@ const Hero = () => {
 
       <div
         ref={textLayerRef}
-        className="parallax-text absolute inset-0 z-10 flex items-center justify-center px-4 py-20"
+        className="hero-parallax-text absolute inset-0 z-10 flex items-center justify-center px-4 py-20"
       >
         <div className="max-w-[800px] text-center">
-          <h2 className="mb-1 text-[clamp(35px,5vw,60px)] font-extralight leading-[1.1] text-white">
+          <h2 className="hero-title hero-anim-1 mb-1 text-[clamp(35px,5vw,60px)] font-extralight leading-[1.1] text-white">
             Welcome to
           </h2>
 
-          <h1 className="mb-5 text-[clamp(50px,7vw,80px)] font-extralight leading-[1.1] text-white">
+          <h1 className="hero-title hero-anim-2 mb-5 text-[clamp(50px,7vw,80px)] font-extralight leading-[1.1] text-white">
             Anna Pharmacy Group
           </h1>
 
           <p
-            className="shimmer-text mb-[14px] text-[clamp(17px,1.5vw,18px)] font-bold"
+            className="hero-shimmer-text mb-[14px] text-[clamp(17px,1.5vw,18px)] font-bold"
           >
             Investing in Health. Investing in Communities.
           </p>
 
-          <p className="mx-auto max-w-[600px] text-[15px] leading-[1.7] text-white">
+          <p className="hero-desc hero-anim-4 mx-auto max-w-[600px] text-[15px] leading-[1.7] text-white">
             Anna Pharmacy Group is a growing network of community pharmacies dedicated to making expert,
             accessible healthcare available to patients across London and the South East. We exist to make
             healthcare more personal and closer to home for every patient who walks through our doors.
